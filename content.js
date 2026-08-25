@@ -14,13 +14,13 @@ const SITE = {
   version: "2.4.0",
   minecraftVersion: "1.21+",
   description: "Odyssey Visuals is a cinematic visual pack for Minecraft Bedrock: softer light, atmospheric skies, and hand-tuned biome color, built for Deferred and Vibrant Visuals rendering.",
-  url: "https://odysseyvisuals.example.com", // REPLACE with your live domain once deployed
+  url: "https://odysseyvisuals.github.io/odyssey/", // REPLACE with your live domain once deployed
 
   // Primary download links — shown as buttons on the homepage.
   links: {
-    curseforge: "https://www.curseforge.com/", // REPLACE with your CurseForge project URL
-    mcpedl: "https://mcpedl.com/",              // REPLACE with your MCPEDL post URL
-    discord: "https://discord.com/",             // REPLACE with your Discord invite
+    curseforge: "https://www.curseforge.com/minecraft-bedrock/texture-packs/odyssey", // REPLACE with your CurseForge project URL
+    mcpedl: "https://mcpedl.com/odyssey/",              // REPLACE with your MCPEDL post URL
+    discord: "https://discord.gg/39Sq4hkMdG",             // REPLACE with your Discord invite
   },
 
   // Contact form endpoint. See contact.html comments for setup instructions.
@@ -96,14 +96,6 @@ const GALLERY = [
   { src: "assets/ocean-odyssey.png", label: "RIVER BLUE" },
   { src: "assets/desert-odyssey.png", label: "SUNLIT SANDS" },
   { src: "assets/nether-odyssey.png", label: "CRIMSON BELOW" },
-];
-
-// Feature cards on the homepage.
-const FEATURES = [
-  { icon: "☀", title: "LIVING LIGHT", text: "Gentle shafts, long golden-hour shadows, and a calm progression from dawn to night." },
-  { icon: "☁", title: "ATMOSPHERIC SKIES", text: "Cloud layers, soft haze, and night skies that bring real depth to the far horizon." },
-  { icon: "✿", title: "BIOME COLOR", text: "Petal-soft groves, emerald forests, cooler rivers, and warmer savannas—each tuned by hand." },
-  { icon: "◇", title: "PERFORMANCE MINDED", text: "Thoughtful choices that help keep the pack comfortable on compatible Bedrock devices." },
 ];
 
 // Installation guides, one card per platform.
