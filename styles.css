@@ -87,12 +87,12 @@ h1 em,h2 em{font-style:normal;color:var(--mint)}
 .stat-row{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font:8px/1.5 var(--pixel)}
 
 /* ---------- Hero ---------- */
-.hero-banner{padding:0;min-height:520px;display:flex;align-items:center;justify-content:center;position:relative;background:url('assets/hero-banner.png') center/cover no-repeat,#152219}
+.hero-banner{padding:0 0 60px;min-height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;background:url('assets/hero-banner.png') center/cover no-repeat,#152219}
 .hero-banner-scrim{position:absolute;inset:0;background:linear-gradient(180deg,#101c17cc,#101c1766 45%,#101c17e6)}
 .hero-banner-inner{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;padding:70px 0}
 .hero-logo{width:min(640px,85%);height:auto}
 .hero-banner-inner .pixel-tag{margin:26px 0 6px;text-align:center}
-.hero-banner-inner .actions{justify-content:center;margin:44px 0 18px}
+.hero-banner-inner .actions{justify-content:center;margin:56px 0 0}
 .hero-banner-inner .stat-row{justify-content:center}
 
 /* ---------- Sections ---------- */
@@ -149,6 +149,28 @@ h1 em,h2 em{font-style:normal;color:var(--mint)}
 }
 .discord-section .mc-button.primary:hover{box-shadow:0 8px 0 0 #2c3380}
 .discord-section .mc-button.primary:active{box-shadow:0 2px 0 0 #2c3380}
+.shine-btn{overflow:hidden}
+.shine-btn::after{
+  content:'';
+  position:absolute;
+  top:-40%;
+  left:-60%;
+  width:35%;
+  height:180%;
+  background:linear-gradient(115deg,transparent 0%,transparent 20%,#5865f27a 50%,transparent 80%,transparent 100%);
+  transform:skewX(-20deg);
+  animation:shine-sweep 3.2s ease-in-out infinite;
+  pointer-events:none;
+  mix-blend-mode:multiply;
+}
+@keyframes shine-sweep{
+  0%{left:-60%}
+  35%{left:130%}
+  100%{left:130%}
+}
+@media(prefers-reduced-motion:reduce){
+  .shine-btn::after{animation:none;display:none}
+}
 .email-section{background:var(--bg)}
 .email-inner{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
 .email-inner>.email-copy>p:not(.pixel-tag){color:var(--muted);font-size:12px}
@@ -178,6 +200,7 @@ h1 em,h2 em{font-style:normal;color:var(--mint)}
 .gallery-intro{margin-bottom:34px}
 .gallery-intro h1{font-size:clamp(24px,3.4vw,38px);display:flex;flex-wrap:wrap;gap:0 14px;align-items:baseline}
 .gallery-intro p:not(.pixel-tag){max-width:600px;color:var(--muted);margin-top:10px;font-size:12px}
+.gallery-intro p code{font:inherit;background:#0d1712;border:1px solid var(--panel-line);padding:2px 5px;color:var(--mist)}
 .gallery-item{border:2px solid var(--panel-line);padding:0;background:var(--panel);position:relative;overflow:hidden;cursor:zoom-in;border-radius:0}
 .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
 .gallery-item:hover img{transform:scale(1.05)}
@@ -185,6 +208,36 @@ h1 em,h2 em{font-style:normal;color:var(--mint)}
 .home-gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .home-gallery-grid .gallery-item{aspect-ratio:16/9;width:100%}
 .home-gallery-grid .gallery-item img{width:100%;height:100%;object-fit:cover}
+
+.stats-strip{
+  position:relative;
+  z-index:2;
+  transform:translateY(50%);
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  width:min(620px,calc(100% - 48px));
+}
+.stat-block{
+  flex:1;
+  max-width:270px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  padding:20px 22px;
+  background:var(--panel);
+  border:2px solid var(--panel-line);
+}
+.stat-icon{flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;color:var(--jade);width:20px;align-self:center}
+.stat-text{display:flex;flex-direction:column}
+.stat-block b{display:block;font:16px/1 var(--pixel);color:var(--mint);margin-bottom:9px}
+.stat-label{display:block;font:7px/1.5 var(--pixel);color:var(--muted);letter-spacing:.5px;white-space:nowrap}
+@media(max-width:520px){
+  .stats-strip{flex-direction:column;transform:translateY(40%);gap:10px}
+  .stat-block{max-width:none}
+  .hero-banner{padding-bottom:70px}
+}
 
 .lightbox{max-width:min(950px,92vw);width:90vw;padding:14px;border:2px solid var(--jade-deep);background:var(--bg);color:var(--ink);border-radius:0}
 .lightbox::backdrop{background:#0a120ecc}

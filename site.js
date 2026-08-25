@@ -85,6 +85,21 @@
     ).join("");
   }
 
+  function renderStats() {
+    const el = $("#stats-strip");
+    if (!el) return;
+    el.innerHTML = STATS.map(
+      (s, i) => `
+      <div class="stat-block reveal" style="--i:${i}">
+        <span class="stat-icon">${s.icon}</span>
+        <span class="stat-text">
+          <b>${s.value}</b>
+          <span class="stat-label">${s.label}</span>
+        </span>
+      </div>`
+    ).join("");
+  }
+
   function renderUpdateStrip() {
     const el = $("#update-strip");
     if (!el) return;
@@ -154,6 +169,7 @@
   renderHero();
   renderFeatures();
   renderUpdateStrip();
+  renderStats();
   renderHomeGallery();
   renderGuides();
   renderFAQ();

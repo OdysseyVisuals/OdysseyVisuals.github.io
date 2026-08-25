@@ -80,6 +80,14 @@ const CHANGELOG = [
   },
 ];
 
+// Homepage stats strip, shown between the hero and the showcase gallery.
+// Update these numbers whenever download counts or ratings change — no
+// HTML editing needed.
+const STATS = [
+  { icon: "⬇", value: "300K+", label: "DOWNLOADS" },
+  { icon: "★", value: "3.8", label: "MCPEDL RATING" },
+];
+
 // Homepage gallery. Every tile is shown at a fixed 16:9 crop, so use real
 // screenshots (PNG) at 1200x675 or similar — not SVG, which upscales
 // poorly and won't show photographic detail from in-game screenshots.
@@ -104,9 +112,9 @@ const GUIDES = [
     platform: "▣ WINDOWS",
     title: "MINECRAFT FOR WINDOWS",
     steps: [
-      "Download the latest .mcpack file.",
-      "Double-click it to open Minecraft.",
-      "Wait for the import message.",
+      "Download the latest .mcpack file from Curseforge or MCPEDL",
+      "Double-click the downloaded file to open Minecraft",
+      "Once the pack is Imported into Minecraft, open Settings → Global Resources → My Packs",
       "Enable Odyssey in Global Resources.",
     ],
   },
