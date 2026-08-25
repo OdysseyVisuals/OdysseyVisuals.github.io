@@ -30,10 +30,10 @@ h1 em,h2 em{font-style:normal;color:var(--mint)}
 /* ---------- Header ---------- */
 .site-header{position:relative;z-index:8;border-bottom:2px solid var(--panel-line);background:#132019}
 .nav{min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{font:12px/1 var(--pixel);letter-spacing:-1px;color:var(--jade-light);white-space:nowrap}
-.brand span{color:var(--jade);font-size:18px}
-.nav-links{display:flex;align-items:center;gap:4px}
-.nav-links a{padding:10px 13px;color:var(--muted);font:8px/1 var(--pixel);border:none;white-space:nowrap;border-radius:0;transition:background .15s,color .15s}
+.brand{display:inline-flex;align-items:center}
+.brand img{height:34px;width:auto;display:block}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{padding:14px 20px;color:var(--muted);font:10px/1 var(--pixel);border:none;white-space:nowrap;border-radius:0;transition:background .15s,color .15s}
 .nav-links a:hover{color:var(--ink);background:#1e332a}
 .nav-links a.active{
   color:#0e1c16;
@@ -46,7 +46,9 @@ h1 em,h2 em{font-style:normal;color:var(--mint)}
 .actions{display:flex;gap:14px;flex-wrap:wrap;margin:30px 0 20px}
 .mc-button{
   position:relative;
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
   background:#3d5747;
   color:var(--ink);
   padding:15px 20px;
@@ -79,6 +81,9 @@ h1 em,h2 em{font-style:normal;color:var(--mint)}
 .mc-button.primary:active{
   box-shadow:0 2px 0 0 #1c5939;
 }
+.mc-icon-arrow{display:inline-block;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid currentColor;vertical-align:middle}
+.mc-icon-arrow-left{display:inline-block;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-right:6px solid currentColor;vertical-align:middle}
+.mc-icon-down{display:inline-block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid currentColor;vertical-align:middle}
 .stat-row{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font:8px/1.5 var(--pixel)}
 
 /* ---------- Hero ---------- */
@@ -109,7 +114,7 @@ h1 em,h2 em{font-style:normal;color:var(--mint)}
 
 .site-footer{border-top:2px solid var(--panel-line);background:#0d1712;padding:18px 0}
 .footer-inner{display:flex;justify-content:space-between;gap:16px;align-items:center;color:var(--muted);font-size:8px}
-.footer-inner p{font-size:8px;margin:0;line-height:1;display:flex;align-items:center}
+.footer-inner p{font-size:8px;margin:0;line-height:1;display:flex;align-items:center;gap:4px}
 .footer-brand{display:inline-flex;align-items:center}
 .footer-brand img{height:22px;width:auto;display:block}
 .footer-social a{color:var(--jade-light);text-decoration:underline}

@@ -28,7 +28,7 @@
     ).join("");
     el.innerHTML = `
       <nav class="nav shell" aria-label="Main navigation">
-        <a class="brand" href="index.html"><span>✦</span> ${SITE.name.toUpperCase()}</a>
+        <a class="brand" href="index.html"><img src="assets/logo.png" alt="${SITE.name}"></a>
         <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><i></i><i></i><i></i></button>
         <div class="nav-links" id="nav-links">${links}</div>
       </nav>`;
@@ -45,7 +45,7 @@
       <div class="shell footer-inner">
         <a class="brand footer-brand" href="index.html"><img src="assets/logo.png" alt="${SITE.name}"></a>
         ${socialLinks.length ? `<p class="footer-social">${socialLinks.join(" · ")}</p>` : ""}
-        <p>© <span id="year"></span> ${SITE.name}. All rights reserved.</p>
+        <p>&copy;&nbsp;<span id="year"></span>&nbsp;${SITE.name}. All rights reserved.</p>
       </div>`;
     $("#year").textContent = new Date().getFullYear();
   }
@@ -55,8 +55,8 @@
     const el = $("#hero-actions");
     if (!el) return;
     el.innerHTML = `
-      <a class="mc-button primary" href="${SITE.links.curseforge}" target="_blank" rel="noreferrer">⬇ CURSEFORGE</a>
-      <a class="mc-button" href="${SITE.links.mcpedl}" target="_blank" rel="noreferrer">⬇ MCPEDL</a>`;
+      <a class="mc-button primary" href="${SITE.links.curseforge}" target="_blank" rel="noreferrer"><span class="mc-icon-down"></span> CURSEFORGE</a>
+      <a class="mc-button" href="${SITE.links.mcpedl}" target="_blank" rel="noreferrer"><span class="mc-icon-down"></span> MCPEDL</a>`;
     const stats = $("#hero-stats");
     if (stats) stats.innerHTML = `<span>✦ V${SITE.version}</span><span>▣ ${SITE.minecraftVersion}</span><span>⚡ DEFERRED</span>`;
   }
@@ -95,7 +95,7 @@
           <h2>${LATEST_UPDATE.title.toUpperCase()}</h2>
           <p>${LATEST_UPDATE.summary}</p>
         </div>
-        <a class="mc-button" href="changelog.html">READ CHANGELOG →</a>
+        <a class="mc-button" href="changelog.html">READ CHANGELOG <span class="mc-icon-arrow"></span></a>
       </div>`;
   }
 
