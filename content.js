@@ -14,7 +14,7 @@ const SITE = {
   version: "2.4.0",
   minecraftVersion: "1.21+",
   description: "Odyssey Visuals is a cinematic visual pack for Minecraft Bedrock: softer light, atmospheric skies, and hand-tuned biome color, built for Deferred and Vibrant Visuals rendering.",
-  url: "https://odysseyvisuals.github.io/odyssey/", // REPLACE with your live domain once deployed
+  url: "https://odysseyvisuals.github.io/",
 
   // Primary download links — shown as buttons on the homepage.
   links: {
