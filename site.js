@@ -99,7 +99,7 @@
     el.innerHTML = GALLERY.map(
       (g) => `
       <button class="gallery-item reveal" data-full="${g.src}">
-        <img src="${g.src}" alt="${g.label}">
+        <img src="${g.src}" alt="${g.label}" loading="lazy">
       </button>`
     ).join("");
   }

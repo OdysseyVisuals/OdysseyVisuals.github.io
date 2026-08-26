@@ -55,12 +55,14 @@ Also update `LATEST_UPDATE` at the top of the file so the homepage banner matche
 
 ## Replacing the placeholder screenshots
 
+**This is the single biggest thing you can do for page speed.** `hero-banner.png` loads behind the very top of every page, and the four `GALLERY` screenshots all load on the homepage — if these are uncompressed PNG screenshots (several MB each, which is normal for a raw Minecraft screenshot), they will dominate your load time far more than any code-level optimization can fix.
+
 The images in `assets/` are placeholders. Swap them for real Minecraft screenshots and PNG versions of the logo/favicon/icons — the whole site uses PNG now, no SVG:
 
 1. Take screenshots at 1200×675 or similar 16:9 ratio for best results.
-2. Save them into `assets/` as PNG (keep file sizes under ~500KB each — compress with [squoosh.app](https://squoosh.app) if needed).
+2. Save them into `assets/` as PNG (keep file sizes under ~500KB each — compress with [squoosh.app](https://squoosh.app) if needed). Converting to WebP instead of PNG in Squoosh typically cuts file size by half again at the same visual quality — use it if you don't need PNG specifically.
 3. Update the paths in `content.js`'s `COMPARISONS` and `GALLERY` arrays to point at the new filenames.
-4. Also set a real photo at `assets/hero-banner.png`, used as the hero background in `styles.css` (`.hero-banner`).
+4. Also set a real photo at `assets/hero-banner.png`, used as the hero background in `styles.css` (`.hero-banner`). This one especially matters, since it loads on every single page.
 
 ## Before going live — checklist
 
