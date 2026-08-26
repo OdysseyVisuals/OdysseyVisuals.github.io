@@ -90,8 +90,8 @@ h1 em,h2 em{font-style:normal;color:var(--mint)}
 .mc-icon-arrow{display:inline-block;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid currentColor;vertical-align:middle}
 .mc-icon-arrow-left{display:inline-block;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-right:6px solid currentColor;vertical-align:middle}
 .mc-icon-down{display:inline-block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid currentColor;vertical-align:middle}
-.mc-icon-download{display:inline-flex;align-items:center;justify-content:center;width:14px;height:18px;vertical-align:middle;image-rendering:pixelated;image-rendering:crisp-edges}
-.mc-icon-download img{width:100%;height:100%;display:block}
+.mc-icon-download{position:relative;z-index:2;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;width:14px;height:18px;vertical-align:middle;image-rendering:pixelated;image-rendering:crisp-edges}
+.mc-icon-download img{width:100%;height:100%;display:block;position:relative;z-index:1}
 .stat-row{display:flex;flex-wrap:wrap;gap:20px;color:var(--muted);font:8px/1.5 var(--pixel)}
 
 /* ---------- Hero ---------- */
@@ -171,7 +171,9 @@ h1 em,h2 em{font-style:normal;color:var(--mint)}
   animation:shine-sweep 3.2s ease-in-out infinite;
   pointer-events:none;
   mix-blend-mode:var(--shine-blend);
+  z-index:0;
 }
+.shine-btn>*{position:relative;z-index:1}
 @keyframes shine-sweep{
   0%{left:-60%}
   35%{left:130%}
@@ -263,6 +265,13 @@ h1 em,h2 em{font-style:normal;color:var(--mint)}
 .lightbox img{display:block;width:100%;max-height:78vh;object-fit:contain}
 .lightbox-close{position:absolute;right:22px;top:22px;background:#16261f;color:var(--jade);border:2px solid var(--jade);font:20px var(--pixel);cursor:pointer;border-radius:0}
 
+/* Gallery image popup: X sits outside the top-right corner of the image/dialog,
+   and a small tag caption sits above the image, matching the grid-tile tag style. */
+.lightbox:not(.download-modal):not(.changelog-modal){overflow:visible}
+.lightbox:not(.download-modal):not(.changelog-modal) .lightbox-close{right:-14px;top:-14px}
+.lightbox-tag{margin:0 0 10px;padding:8px 10px;display:inline-block;background:#101c17e8;border:1px solid var(--panel-line);font:7px/1.5 var(--pixel);color:var(--jade-light)}
+.lightbox-tag:empty{display:none}
+
 /* ---------- Download modal ---------- */
 .download-modal{max-width:420px;width:90vw;padding:34px 28px 30px}
 .download-modal-body h3{margin:0 0 26px}
@@ -306,9 +315,31 @@ textarea{resize:vertical}
 .reveal{opacity:0;transform:translateY(15px);transition:.55s}
 .reveal.show{opacity:1;transform:none}
 :focus-visible{outline:2px solid var(--jade);outline-offset:2px}
-.error-page{padding:120px 0;text-align:center}
-.error-page .pixel-tag{justify-content:center}
-.error-page h1{font-size:clamp(40px,8vw,80px)}
+.error-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:60px 0;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at center 30%,#1a3226 0%,var(--bg) 70%)}
+.error-page::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--panel-line) 1px,transparent 1px),linear-gradient(90deg,var(--panel-line) 1px,transparent 1px);background-size:40px 40px;opacity:.15;pointer-events:none}
+.error-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+.error-page .pixel-tag{justify-content:center;color:var(--jade-light)}
+.error-page h1{font-size:clamp(36px,7vw,68px);margin:14px 0 10px;line-height:1.15}
+.error-page h1 em{color:var(--jade);font-style:normal}
+.error-page>.shell>p:not(.pixel-tag){color:var(--muted);font-size:14px}
+.error-sprite{
+  width:70px;height:128px;
+  margin-bottom:18px;
+  background-image:url('/assets/emote-touch.png');
+  background-repeat:no-repeat;
+  background-size:1050px 128px;
+  image-rendering:pixelated;
+  transform:scale(2);
+  transform-origin:bottom center;
+  animation:error-sprite-play 1.5s steps(15) infinite;
+}
+@keyframes error-sprite-play{
+  from{background-position:0 0}
+  to{background-position:-1050px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  .error-sprite{animation:none;background-position:0 0}
+}
 
 /* ---------- Responsive ---------- */
 @media(max-width:850px){

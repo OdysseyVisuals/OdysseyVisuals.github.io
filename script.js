@@ -27,18 +27,20 @@
   }
 
   function initLightbox() {
-    const dialog = $(".lightbox");
+    const dialog = $(".lightbox:not(.download-modal):not(.changelog-modal)");
     if (!dialog) return;
     $$(".gallery-item").forEach((item) =>
       item.addEventListener("click", () => {
         const img = $("img", item);
-        const target = $(".lightbox img");
+        const target = $("img", dialog);
+        const tag = $(".lightbox-tag", dialog);
         target.src = item.dataset.full;
         target.alt = img.alt;
+        if (tag) tag.textContent = item.dataset.tag || img.alt || "";
         dialog.showModal();
       })
     );
-    $(".lightbox-close")?.addEventListener("click", () => dialog.close());
+    $(".lightbox-close", dialog)?.addEventListener("click", () => dialog.close());
     dialog.addEventListener("click", (e) => {
       if (e.target === dialog) dialog.close();
     });

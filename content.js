@@ -91,11 +91,16 @@ const STATS = [
 // Homepage gallery. Every tile is shown at a fixed 16:9 crop, so use real
 // screenshots (PNG) at 1200x675 or similar — not SVG, which upscales
 // poorly and won't show photographic detail from in-game screenshots.
+// "label" is the small tag shown on the grid tile itself.
+// "tag" is optional — if set, it's shown instead of "label" as the caption
+// at the top of the full-size popup (e.g. crediting a screenshot tool or
+// giving more detail than the short grid label). If omitted, "label" is
+// reused for the popup too.
 const GALLERY = [
-  { src: "/assets/forest-odyssey.webp", label: "VERDANT MORNING" },
-  { src: "/assets/ocean-odyssey.webp", label: "RIVER BLUE" },
-  { src: "/assets/desert-odyssey.webp", label: "SUNLIT SANDS" },
-  { src: "/assets/nether-odyssey.webp", label: "CRIMSON BELOW" },
+  { src: "/assets/image1.webp", label: "Taiga at night", tag: "Captured with CoreCraft Addon" },
+  { src: "/assets/image2.webp", label: "Mushroom Island", tag: "Captured with CoreCraft Addon" },
+  { src: "/assets/image3.webp", label: "Warped Forest", tag: "Captured with CoreCraft Addon" },
+  { src: "/assets/image4.webp", label: "End City", tag: "Captured with CoreCraft Addon" },
 ];
 
 // Installation guides, one card per platform.

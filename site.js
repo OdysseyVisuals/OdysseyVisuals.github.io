@@ -98,7 +98,7 @@
     if (!el) return;
     el.innerHTML = GALLERY.map(
       (g) => `
-      <button class="gallery-item reveal" data-full="${g.src}">
+      <button class="gallery-item reveal" data-full="${g.src}" data-tag="${g.tag || g.label}">
         <img src="${g.src}" alt="${g.label}" loading="lazy">
       </button>`
     ).join("");
