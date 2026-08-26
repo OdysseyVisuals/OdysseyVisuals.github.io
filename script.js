@@ -128,8 +128,7 @@
         <b>V${c.version} · ${c.date.toUpperCase()}</b>
         <h3>${c.title}</h3>
         ${renderBody(c)}`;
-      lockScroll();
-      dialog.showModal();
+      openDialogWithoutScroll(dialog);
     }
 
     items.forEach((item) => {
