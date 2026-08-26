@@ -101,3 +101,47 @@ sitemap.xml       Search engine page list
 ## Hosting
 
 This is a static site — it works on any static host: Cloudflare Pages, Netlify, GitHub Pages, Vercel. Just upload the whole folder. No build step, no server required.
+
+
+
+
+
+
+
+
+changelog format:
+
+  {
+    version: "2.0.0",
+    date: "21 June 2026",
+    title: "Update 2.0",
+    notes: "Overall Polish with many overhauls and improvements.",
+    sections: [
+      {
+        heading: "New",
+        items: [
+          "Added new title image when the pack is enabled",
+          "Made adjustments to fog for all biomes based on the time of day",
+          "Made water and under water fog for swamp & mangrove swamp murky green",
+          "Added new border fog for the swamp, deser and the mesa",
+        ],
+      },
+      {
+        heading: "Changes",
+        items: [
+          'Removed the "Experimental" subpack until further notice.',
+          { note: "This subpack contained the original PBR for the pack, the reason it was removed was due to it taking too long to finish. However, the plan is to bring it back at some point in the future" },
+          'Made the "Non-PBR/Compatibility" subpack the default subpack',
+          "Made adjustments to the colourgrading to be more realistic and natural",
+          "Slightly reduced the overall warmth of the pack",
+          "Made small tweaks to the fog of some biomes to be more visually pleasing",
+        ],
+      },
+      {
+        heading: "Fixes",
+        items: [
+          "Fixed a compatibility warning that was being shown to some users [mainly mobile]",
+        ],
+      },
+    ],
+  },

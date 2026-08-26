@@ -16,6 +16,27 @@
     );
   }
 
+  // Prevents the page from visibly moving when a <dialog> opens. showModal()
+  // moves focus into the dialog, and some browsers scroll the page to keep
+  // the focused element in view; because html{scroll-behavior:smooth} is set
+  // globally, that scroll (even a 1px correction) animates and is visible as
+  // a jump. Forcing scroll-behavior to "auto" for the duration of the open
+  // call makes any such adjustment instant/invisible, then restores the
+  // smooth behavior afterward for normal in-page navigation.
+  function openDialogWithoutScroll(dialog) {
+    const html = document.documentElement;
+    const prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = "auto";
+    const y = window.scrollY || window.pageYOffset || 0;
+    dialog.showModal();
+    window.scrollTo(0, y);
+    // restore after the browser has finished any focus-driven scrolling
+    requestAnimationFrame(() => {
+      window.scrollTo(0, y);
+      html.style.scrollBehavior = prev;
+    });
+  }
+
   function initReveal() {
     const targets = $$(".reveal");
     if (!targets.length) return;
@@ -37,7 +58,7 @@
         target.src = item.dataset.full;
         target.alt = img.alt;
         if (tag) tag.textContent = item.dataset.tag || img.alt || "";
-        dialog.showModal();
+        openDialogWithoutScroll(dialog);
       })
     );
     $(".lightbox-close", dialog)?.addEventListener("click", () => dialog.close());
@@ -50,7 +71,9 @@
     const trigger = $("#download-trigger");
     const dialog = $(".download-modal");
     if (!trigger || !dialog) return;
-    trigger.addEventListener("click", () => dialog.showModal());
+    trigger.addEventListener("click", () => {
+      openDialogWithoutScroll(dialog);
+    });
     $(".lightbox-close", dialog)?.addEventListener("click", () => dialog.close());
     dialog.addEventListener("click", (e) => {
       if (e.target === dialog) dialog.close();
@@ -105,6 +128,7 @@
         <b>V${c.version} · ${c.date.toUpperCase()}</b>
         <h3>${c.title}</h3>
         ${renderBody(c)}`;
+      lockScroll();
       dialog.showModal();
     }
 

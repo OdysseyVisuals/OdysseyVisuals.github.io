@@ -415,6 +415,27 @@ textarea{resize:vertical}
   .hero-logo{width:90%}
   .discord-section{padding:56px 0}
   .discord-float{width:min(150px,55vw);height:auto}
+
+  /* Gallery/changelog popups: use almost the full screen on mobile instead of
+     shrinking to 90vw with extra padding — the image was rendering noticeably
+     smaller than the viewport. Keep the browser's default fixed/centered
+     dialog positioning (don't set position here) so it stays centered over
+     the current viewport regardless of scroll position. */
+  .lightbox{width:96vw;max-width:96vw;max-height:92vh;padding:10px 10px 14px;margin:auto}
+  .lightbox:not(.download-modal):not(.changelog-modal){
+    overflow:visible;
+  }
+  .lightbox:not(.download-modal):not(.changelog-modal) img{
+    max-height:78vh;
+    display:block;
+  }
+  .lightbox:not(.download-modal):not(.changelog-modal) .lightbox-close{
+    right:-8px;
+    top:-38px;
+    z-index:5;
+  }
+  .lightbox-tag{font-size:6px;padding:6px 8px;margin-bottom:8px}
+  .changelog-modal{max-height:88vh;overflow-y:auto}
 }
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
