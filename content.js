@@ -84,18 +84,18 @@ const CHANGELOG = [
 // Update these numbers whenever download counts or ratings change — no
 // HTML editing needed.
 const STATS = [
-  { icon: "⬇", value: "300K+", label: "DOWNLOADS" },
-  { icon: "★", value: "3.8", label: "MCPEDL RATING" },
+  { icon: "/assets/icon-downloads.svg", value: "300K+", label: "DOWNLOADS" },
+  { icon: "/assets/icon-rating.svg", value: "3.8", label: "MCPEDL RATING" },
 ];
 
 // Homepage gallery. Every tile is shown at a fixed 16:9 crop, so use real
 // screenshots (PNG) at 1200x675 or similar — not SVG, which upscales
 // poorly and won't show photographic detail from in-game screenshots.
 const GALLERY = [
-  { src: "assets/forest-odyssey.png", label: "VERDANT MORNING" },
-  { src: "assets/ocean-odyssey.png", label: "RIVER BLUE" },
-  { src: "assets/desert-odyssey.png", label: "SUNLIT SANDS" },
-  { src: "assets/nether-odyssey.png", label: "CRIMSON BELOW" },
+  { src: "/assets/forest-odyssey.png", label: "VERDANT MORNING" },
+  { src: "/assets/ocean-odyssey.png", label: "RIVER BLUE" },
+  { src: "/assets/desert-odyssey.png", label: "SUNLIT SANDS" },
+  { src: "/assets/nether-odyssey.png", label: "CRIMSON BELOW" },
 ];
 
 // Installation guides, one card per platform.

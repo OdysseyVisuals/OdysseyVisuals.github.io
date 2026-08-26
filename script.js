@@ -44,6 +44,17 @@
     });
   }
 
+  function initDownloadModal() {
+    const trigger = $("#download-trigger");
+    const dialog = $(".download-modal");
+    if (!trigger || !dialog) return;
+    trigger.addEventListener("click", () => dialog.showModal());
+    $(".lightbox-close", dialog)?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  }
+
   function initContactForm() {
     const form = $("form[data-form]");
     if (!form) return;
@@ -95,6 +106,7 @@
     initReveal();
     initLightbox();
     initChangelogModal();
+    initDownloadModal();
     initContactForm();
   }
 

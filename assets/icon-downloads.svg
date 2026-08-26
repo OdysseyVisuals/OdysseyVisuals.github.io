@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!--
+    Reference: open-tray download icon with 3-tone bevel shading
+    (dark left face, mid-tone right/body face, light highlight down the
+    center). Recolored from cyan/blue to the site's jade palette.
+  -->
+
+  <!-- Arrow shaft: left half dark, right half mid, thin light seam -->
+  <rect x="6" y="2" width="1" height="5" fill="#2c6b4c"/>
+  <rect x="7" y="2" width="1" height="5" fill="#5ab086"/>
+  <rect x="8" y="2" width="1" height="5" fill="#5ab086"/>
+  <rect x="9" y="2" width="1" height="5" fill="#3a8562"/>
+
+  <!-- Arrow head, stepped triangle, light highlight down the middle -->
+  <rect x="5" y="7" width="1" height="1" fill="#2c6b4c"/>
+  <rect x="6" y="7" width="1" height="1" fill="#5ab086"/>
+  <rect x="7" y="7" width="2" height="1" fill="#84e0b6"/>
+  <rect x="9" y="7" width="1" height="1" fill="#5ab086"/>
+  <rect x="10" y="7" width="1" height="1" fill="#3a8562"/>
+
+  <rect x="6" y="8" width="1" height="1" fill="#2c6b4c"/>
+  <rect x="7" y="8" width="2" height="1" fill="#84e0b6"/>
+  <rect x="9" y="8" width="1" height="1" fill="#3a8562"/>
+
+  <rect x="7" y="9" width="2" height="1" fill="#c9f2dc"/>
+
+  <!-- Tray: open bracket shape (uprights + base), no fill in the middle -->
+  <rect x="2" y="8" width="2" height="5" fill="#2c6b4c"/>
+  <rect x="12" y="8" width="2" height="5" fill="#3a8562"/>
+
+  <rect x="2" y="12" width="2" height="1" fill="#2c6b4c"/>
+  <rect x="4" y="12" width="8" height="1" fill="#84e0b6"/>
+  <rect x="12" y="12" width="2" height="1" fill="#3a8562"/>
+
+  <rect x="2" y="13" width="12" height="1" fill="#1c5939"/>
+</svg>

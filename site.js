@@ -13,10 +13,10 @@
 
   // ---------- Header ----------
   const NAV_ITEMS = [
-    { href: "index.html", label: "Home", key: "home" },
-    { href: "guides.html", label: "Guides", key: "guides" },
-    { href: "changelog.html", label: "Changelog", key: "changelog" },
-    { href: "contact.html", label: "Contact", key: "contact" },
+    { href: "/", label: "Home", key: "home" },
+    { href: "/guides/", label: "Guides", key: "guides" },
+    { href: "/changelog/", label: "Changelog", key: "changelog" },
+    { href: "/contact/", label: "Contact", key: "contact" },
   ];
 
   function renderHeader() {
@@ -28,7 +28,7 @@
     ).join("");
     el.innerHTML = `
       <nav class="nav shell" aria-label="Main navigation">
-        <a class="brand" href="index.html"><img src="assets/logo.png" alt="${SITE.name}"></a>
+        <a class="brand" href="/"><img src="/assets/logo.png" alt="${SITE.name}"></a>
         <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><i></i><i></i><i></i></button>
         <div class="nav-links" id="nav-links">${links}</div>
       </nav>`;
@@ -43,7 +43,7 @@
     if (SITE.social.youtube) socialLinks.push(`<a href="${SITE.social.youtube}" target="_blank" rel="noreferrer">YouTube</a>`);
     el.innerHTML = `
       <div class="shell footer-inner">
-        <a class="brand footer-brand" href="index.html"><img src="assets/logo.png" alt="${SITE.name}"></a>
+        <a class="brand footer-brand" href="/"><img src="/assets/logo.png" alt="${SITE.name}"></a>
         ${socialLinks.length ? `<p class="footer-social">${socialLinks.join(" · ")}</p>` : ""}
         <p>&copy;&nbsp;<span id="year"></span>&nbsp;${SITE.name}. All rights reserved.</p>
       </div>`;
@@ -55,10 +55,29 @@
     const el = $("#hero-actions");
     if (!el) return;
     el.innerHTML = `
-      <a class="mc-button primary" href="${SITE.links.curseforge}" target="_blank" rel="noreferrer"><span class="mc-icon-down"></span> CURSEFORGE</a>
-      <a class="mc-button" href="${SITE.links.mcpedl}" target="_blank" rel="noreferrer"><span class="mc-icon-down"></span> MCPEDL</a>`;
+      <button class="mc-button primary shine-btn download-trigger-btn" id="download-trigger" type="button"><span class="mc-icon-download"><img src="/assets/icon-download.png" alt="" width="14" height="18"></span> DOWNLOAD</button>`;
     const stats = $("#hero-stats");
     if (stats) stats.innerHTML = `<span>✦ V${SITE.version}</span><span>▣ ${SITE.minecraftVersion}</span><span>⚡ DEFERRED</span>`;
+  }
+
+  // Sources shown in the download popup. Colors are each platform's brand
+  // color, applied via inline CSS vars so styles.css doesn't need per-source
+  // rules. Add a new object here to add a new download source.
+  const DOWNLOAD_SOURCES = [
+    { key: "curseforge", label: "CURSEFORGE", href: () => SITE.links.curseforge, color: "#f16436", colorDark: "#c8451f" },
+    { key: "mcpedl", label: "MCPEDL", href: () => SITE.links.mcpedl, color: "#00b137", colorDark: "#00832a" },
+  ];
+
+  function renderDownloadOptions() {
+    const el = $("#download-options");
+    if (!el) return;
+    el.innerHTML = DOWNLOAD_SOURCES.map(
+      (s) => `
+      <a class="mc-button download-source" style="--src:${s.color};--src-dark:${s.colorDark}"
+         href="${s.href()}" target="_blank" rel="noreferrer">
+        <span class="mc-icon-down"></span> ${s.label}
+      </a>`
+    ).join("");
   }
 
   function renderFeatures() {
@@ -91,7 +110,7 @@
     el.innerHTML = STATS.map(
       (s, i) => `
       <div class="stat-block reveal" style="--i:${i}">
-        <span class="stat-icon">${s.icon}</span>
+        <img class="stat-icon" src="${s.icon}" alt="" width="20" height="20">
         <span class="stat-text">
           <b>${s.value}</b>
           <span class="stat-label">${s.label}</span>
@@ -110,7 +129,7 @@
           <h2>${LATEST_UPDATE.title.toUpperCase()}</h2>
           <p>${LATEST_UPDATE.summary}</p>
         </div>
-        <a class="mc-button" href="changelog.html">READ CHANGELOG <span class="mc-icon-arrow"></span></a>
+        <a class="mc-button" href="/changelog/">READ CHANGELOG <span class="mc-icon-arrow"></span></a>
       </div>`;
   }
 
@@ -118,13 +137,16 @@
   function renderGuides() {
     const el = $("#guides-grid");
     if (!el) return;
+    const startOpen = window.matchMedia("(min-width: 851px)").matches;
     el.innerHTML = GUIDES.map(
       (g) => `
-      <article class="pixel-panel guide">
-        <span class="platform">${g.platform}</span>
-        <h3>${g.title}</h3>
+      <details class="pixel-panel guide"${startOpen ? " open" : ""}>
+        <summary>
+          <span class="platform">${g.platform}</span>
+          <h3>${g.title}</h3>
+        </summary>
         <ol>${g.steps.map((s) => `<li>${s}</li>`).join("")}</ol>
-      </article>`
+      </details>`
     ).join("");
   }
 
@@ -167,6 +189,7 @@
   renderHeader();
   renderFooter();
   renderHero();
+  renderDownloadOptions();
   renderFeatures();
   renderUpdateStrip();
   renderStats();
