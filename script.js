@@ -77,14 +77,34 @@
     if (!dialog || !items.length) return;
     const body = $("#changelog-modal-body", dialog);
 
+    function renderItem(item) {
+      if (typeof item === "object" && item !== null && "note" in item) {
+        return `<li class="change-note">${item.note}</li>`;
+      }
+      return `<li>${item}</li>`;
+    }
+
+    function renderBody(c) {
+      if (c.sections && c.sections.length) {
+        return c.sections.map(
+          (s) => `
+            <div class="change-section">
+              <h4>${s.heading}</h4>
+              <ul class="change-details">${s.items.map(renderItem).join("")}</ul>
+            </div>`
+        ).join("");
+      }
+      const details = c.details && c.details.length ? c.details : [c.notes];
+      return `<ul class="change-details">${details.map(renderItem).join("")}</ul>`;
+    }
+
     function openEntry(index) {
       const c = CHANGELOG[index];
       if (!c) return;
-      const details = c.details && c.details.length ? c.details : [c.notes];
       body.innerHTML = `
         <b>V${c.version} · ${c.date.toUpperCase()}</b>
         <h3>${c.title}</h3>
-        <ul class="change-details">${details.map((d) => `<li>${d}</li>`).join("")}</ul>`;
+        ${renderBody(c)}`;
       dialog.showModal();
     }
 

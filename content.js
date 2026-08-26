@@ -41,41 +41,45 @@ const LATEST_UPDATE = {
 // Full changelog. Newest entry first. Add a new object to the top of this
 // array whenever you ship an update.
 // - "notes" is the short one-line summary shown in the collapsed list.
-// - "details" is an array of bullet points shown when someone clicks the
-//   entry to expand it. If you omit "details", the notes line is reused
-//   as the only bullet.
+// - For the full popup, use EITHER "sections" OR "details" (not both):
+//     "sections" groups bullets under headings like "New", "Changes", "Fixes"
+//     — the format used for most Odyssey changelogs. Each section is:
+//       { heading: "New", items: [ "bullet one", "bullet two" ] }
+//     An item can also be a highlighted note instead of a normal bullet,
+//     shown in bold without a bullet point, e.g. for call-out remarks:
+//       { note: "This subpack contained the original PBR..." }
+//     "details" is the older flat array of bullet points, with no headings.
+//     If you omit both, the "notes" line is reused as the only bullet.
 const CHANGELOG = [
   {
-    version: "2.4.0",
-    date: "August 2026",
+    version: "2.0.0",
+    date: "21 June 2026",
     title: "Update 2.0",
-    notes: "The pack was updated with lots of changes",
-    details: [
-      "The pack was updated with lots of changes.",
-      "Add specific bullet points here describing each change in this release.",
-      "Replace this list in content.js with your real 2.4.0 release notes.",
-    ],
-  },
-  {
-    version: "2.3.1",
-    date: "July 2026",
-    title: "Cloud tuning",
-    notes: "Balanced cloud contrast and light scatter for calmer, more readable skies.",
-    details: [
-      "Reduced cloud contrast for a softer daytime sky.",
-      "Tuned light scatter so sunsets read more clearly through cloud layers.",
-      "Minor color balance pass across all biomes to match the new sky tone.",
-    ],
-  },
-  {
-    version: "2.3.0",
-    date: "June 2026",
-    title: "Grove update",
-    notes: "Reworked foliage light response and improved cherry-grove color balance.",
-    details: [
-      "Reworked how foliage responds to direct and ambient light.",
-      "Improved cherry-grove color balance for a warmer, more petal-soft look.",
-      "General pass over grass and leaf color across temperate biomes.",
+    notes: "Overall Polish with many overhauls and improvements.",
+    sections: [
+      {
+        heading: "New",
+        items: [
+          "Added new title image when the pack is enabled",
+          "Made adjustments to fog for all biomes based on the time of day",
+          "Made water and under water fog for swamp & mangrove swamp murky green",
+          "Added new border fog for the swamp, deser and the mesa",
+        ],
+      },
+      {
+        heading: "Changes",
+        items: [
+          'Removed all subpacks from the pack due the incomplete state of them',
+          'Slightly improved sky during sunset/sunrise',
+          "Made some compatability changes to look better with addons that custom biomes",
+          "Adjusted the colour grading to be less harsh and to prefer less contrast",
+          "Improved water waves",
+          "Made nether slightly less dark to help with gameplay",
+          "Improved the visuals of the end ",
+          "Changed Mip-mapping to improve performance and lower flickering ",
+          "Adjusted the colour for leaf litter in the jungle biome to be less dark",
+        ],
+      },
     ],
   },
 ];
