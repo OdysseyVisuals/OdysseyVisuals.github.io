@@ -92,10 +92,10 @@ const STATS = [
 // screenshots (PNG) at 1200x675 or similar — not SVG, which upscales
 // poorly and won't show photographic detail from in-game screenshots.
 const GALLERY = [
-  { src: "/assets/forest-odyssey.png", label: "VERDANT MORNING" },
-  { src: "/assets/ocean-odyssey.png", label: "RIVER BLUE" },
-  { src: "/assets/desert-odyssey.png", label: "SUNLIT SANDS" },
-  { src: "/assets/nether-odyssey.png", label: "CRIMSON BELOW" },
+  { src: "/assets/forest-odyssey.webp", label: "VERDANT MORNING" },
+  { src: "/assets/ocean-odyssey.webp", label: "RIVER BLUE" },
+  { src: "/assets/desert-odyssey.webp", label: "SUNLIT SANDS" },
+  { src: "/assets/nether-odyssey.webp", label: "CRIMSON BELOW" },
 ];
 
 // Installation guides, one card per platform.

@@ -28,7 +28,7 @@
     ).join("");
     el.innerHTML = `
       <nav class="nav shell" aria-label="Main navigation">
-        <a class="brand" href="/"><img src="/assets/logo.png" alt="${SITE.name}"></a>
+        <a class="brand" href="/"><img src="/assets/logo.webp" alt="${SITE.name}"></a>
         <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><i></i><i></i><i></i></button>
         <div class="nav-links" id="nav-links">${links}</div>
       </nav>`;
@@ -43,7 +43,7 @@
     if (SITE.social.youtube) socialLinks.push(`<a href="${SITE.social.youtube}" target="_blank" rel="noreferrer">YouTube</a>`);
     el.innerHTML = `
       <div class="shell footer-inner">
-        <a class="brand footer-brand" href="/"><img src="/assets/logo.png" alt="${SITE.name}"></a>
+        <a class="brand footer-brand" href="/"><img src="/assets/logo.webp" alt="${SITE.name}"></a>
         ${socialLinks.length ? `<p class="footer-social">${socialLinks.join(" · ")}</p>` : ""}
         <p>&copy;&nbsp;<span id="year"></span>&nbsp;${SITE.name}. All rights reserved.</p>
       </div>`;
@@ -55,7 +55,7 @@
     const el = $("#hero-actions");
     if (!el) return;
     el.innerHTML = `
-      <button class="mc-button primary shine-btn download-trigger-btn" id="download-trigger" type="button"><span class="mc-icon-download"><img src="/assets/icon-download.png" alt="" width="14" height="18"></span> DOWNLOAD</button>`;
+      <button class="mc-button primary shine-btn download-trigger-btn" id="download-trigger" type="button"><span class="mc-icon-download"><img src="/assets/icon-download.webp" alt="" width="14" height="18"></span> DOWNLOAD</button>`;
     const stats = $("#hero-stats");
     if (stats) stats.innerHTML = `<span>✦ V${SITE.version}</span><span>▣ ${SITE.minecraftVersion}</span><span>⚡ DEFERRED</span>`;
   }
