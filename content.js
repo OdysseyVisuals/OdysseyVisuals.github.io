@@ -108,35 +108,41 @@ const GALLERY = [
 ];
 
 // Installation guides, one card per platform.
+// Each guide has a "setup" array instead of plain "steps" so the numbered
+// steps can have bold "Step N:" labels and an in-between highlighted note,
+// matching the format of the setup guides posted on Discord/CurseForge.
+// An item is either:
+//   { step: 1, text: "..." }              — a numbered step
+//   { note: "..." }                        — a bold highlighted callout
 const GUIDES = [
   {
     platform: "▣ WINDOWS",
     title: "MINECRAFT FOR WINDOWS",
-    steps: [
-      "Download the latest .mcpack file from Curseforge or MCPEDL",
-      "Double-click the downloaded file to open Minecraft",
-      "Once the pack is Imported into Minecraft, open Settings → Global Resources → My Packs",
-      "Enable Odyssey in Global Resources.",
+    setup: [
+      { step: 1, text: 'Download the pack and then open it by double-click it. This will open up Minecraft. [You can also right click the file and then click on open with, then select Minecraft / Minecraft Preview.]' },
+      { step: 2, text: 'Once the game opens, go to settings>video and enable "In-Game Graphics Mode Switching". Then change the graphics mode from Fancy or Simple to "Vibrant Visuals".' },
+      { note: 'If the "Vibrant Visuals" graphics mode is grey and you cant enable it then your device is not supported and cant run Vibrant Visuals .' },
+      { step: 3, text: 'Now you can enable the pack either in a world resource pack or in the global resource pack section. [Additionally, you can enable the experimental feature called "Render Dragon Features for creators" to get features like point light that gives colored lighting]' },
     ],
   },
   {
     platform: "▣ ANDROID",
-    title: "ANDROID / GOOGLE PLAY",
-    steps: [
-      "Download the .mcpack file.",
-      "Open it from Downloads.",
-      "Select Minecraft if prompted.",
-      "Activate it under Global Resources.",
+    title: "ANDROID",
+    setup: [
+      { step: 1, text: 'Download the pack and then open it by longpressing the file and then clicking open/open with and then select Minecraft /Minecraft Preview or Beta.' },
+      { step: 2, text: 'Once the game opens, go to settings>video and enable "In-Game Graphics Mode Switching". Then change the graphics mode from Fancy or Simple to "Vibrant Visuals".' },
+      { note: 'If the "Vibrant Visuals" graphics mode is grey and you cant enable it then your device is not supported and cant run Vibrant Visuals .' },
+      { step: 3, text: 'Now you can enable the pack either in a world resource pack or in the global resource pack section. [Additionally, you can enable the experimental feature called "Render Dragon Features for creators" to get features like point light that gives colored lighting]' },
     ],
   },
   {
-    platform: "▣ IOS / IPADOS",
+    platform: "▣ IOS",
     title: "IPHONE & IPAD",
-    steps: [
-      "Download the pack in Safari.",
-      "Use Share → Open in Minecraft.",
-      "Allow the import to complete.",
-      "Enable it in Global Resources.",
+    setup: [
+      { step: 1, text: 'Download the pack and then open it in Minecraft / Minecraft Beta/Preview.' },
+      { step: 2, text: 'Once the game opens, go to settings>video and enable "In-Game Graphics Mode Switching". Then change the graphics mode from Fancy or Simple to "Vibrant Visuals".' },
+      { note: 'If the "Vibrant Visuals" graphics mode is grey and you cant enable it then your device is not supported and cant run Vibrant Visuals .' },
+      { step: 3, text: 'Now you can enable the pack either in a world resource pack or in the global resource pack section. [Additionally, you can enable the experimental feature called "Render Dragon Features for creators" to get features like point light that gives colored lighting]' },
     ],
   },
 ];
@@ -144,15 +150,20 @@ const GUIDES = [
 // Frequently asked questions on the guides page.
 const FAQ = [
   {
-    q: "WHERE DO I ENABLE THE PACK?",
-    a: "Open Settings, then Global Resources, then My Packs. Select Odyssey Visuals and choose Activate.",
+    q: "CAN MY DEVICE RUN THIS PACK?",
+    a: `Odyssey and all other Vibrant Visuals packs share the same requirements set by Mojang:
+      <ul class="faq-list">
+        <li>Xbox Series X|S, Xbox One</li>
+        <li>PlayStation 4/5</li>
+        <li>Android — Adreno 640, Mali-G68, Mali-G77, or Xclipse 530 or higher</li>
+        <li>iOS / iPadOS — A12, M1, or higher chip</li>
+        <li>Windows — Minecraft running on DirectX 12 (some older DirectX 12 cards may still be incompatible)</li>
+      </ul>
+      These requirements can change at any time.
+      <a class="faq-link" href="https://help.minecraft.net/hc/en-us/articles/37413608357773" target="_blank" rel="noreferrer">See the latest info on Minecraft Help <span class="mc-icon-arrow"></span></a>`,
   },
   {
-    q: "DOES IT WORK IN EXISTING WORLDS?",
-    a: "Usually, yes. Make a world backup before making visual changes, then follow the release notes for the current version.",
-  },
-  {
-    q: "WHICH RENDERER DOES ODYSSEY NEED?",
-    a: "Odyssey is built for Deferred / Vibrant Visuals rendering. On unsupported devices the pack still applies textures and color, but skies and lighting effects will be reduced.",
+    q: "DOES IT WORK WITH ADD-ONS AND OTHER RESOURCE PACKS?",
+    a: "Odyssey should be compatible with most add-ons and resource packs, but you may still run into occasional issues, as 100% compatibility isn't always possible.",
   },
 ];

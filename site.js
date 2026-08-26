@@ -134,18 +134,25 @@
   }
 
   // ---------- Guides page ----------
+  function renderGuideItem(item) {
+    if ("note" in item) {
+      return `<li class="guide-note">${item.note}</li>`;
+    }
+    return `<li class="guide-step"><b>Step ${item.step}:</b> ${item.text}</li>`;
+  }
+
   function renderGuides() {
     const el = $("#guides-grid");
     if (!el) return;
-    const startOpen = window.matchMedia("(min-width: 851px)").matches;
     el.innerHTML = GUIDES.map(
-      (g) => `
-      <details class="pixel-panel guide"${startOpen ? " open" : ""}>
+      (g, i) => `
+      <details class="pixel-panel guide"${i === 0 ? " open" : ""}>
         <summary>
           <span class="platform">${g.platform}</span>
           <h3>${g.title}</h3>
         </summary>
-        <ol>${g.steps.map((s) => `<li>${s}</li>`).join("")}</ol>
+        <p class="guide-setup-label">Setup:</p>
+        <ul class="guide-setup">${g.setup.map(renderGuideItem).join("")}</ul>
       </details>`
     ).join("");
   }
