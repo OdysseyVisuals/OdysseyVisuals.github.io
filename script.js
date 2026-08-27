@@ -84,13 +84,38 @@
     const form = $("form[data-form]");
     if (!form) return;
     form.addEventListener("submit", (e) => {
+      e.preventDefault();
       const status = $(".form-status", form);
       if (form.action.includes("YOUR_FORM_ID")) {
-        e.preventDefault();
         if (status) status.textContent = "Form is not connected yet — add your Formspree form ID in content.js to enable sending.";
         return;
       }
       if (status) status.textContent = "Sending…";
+      const submitBtn = $("button[type=submit]", form);
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      })
+        .then((res) => {
+          if (res.ok) {
+            if (status) status.textContent = "Thanks! Your message has been sent.";
+            form.reset();
+          } else {
+            return res.json().then((data) => {
+              const msg = data?.errors?.map((er) => er.message).join(", ");
+              if (status) status.textContent = msg || "Something went wrong — please try again.";
+            });
+          }
+        })
+        .catch(() => {
+          if (status) status.textContent = "Something went wrong — please try again.";
+        })
+        .finally(() => {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   }
 

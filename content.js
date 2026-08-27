@@ -24,7 +24,7 @@ const SITE = {
   },
 
   // Contact form endpoint. See contact.html comments for setup instructions.
-  formEndpoint: "https://formspree.io/f/YOUR_FORM_ID", // REPLACE once you create a Formspree form
+  formEndpoint: "https://formspree.io/f/moeqarqb",
 
   social: {
     twitter: "",   // e.g. "https://x.com/yourhandle" — leave blank to hide
