@@ -146,7 +146,7 @@
     if (!el) return;
     el.innerHTML = GUIDES.map(
       (g, i) => `
-      <details class="pixel-panel guide"${i === 0 ? " open" : ""}>
+      <details class="pixel-panel guide" name="guides-accordion"${i === 0 ? " open" : ""}>
         <summary>
           <span class="platform">${g.platform}</span>
           <h3>${g.title}</h3>
@@ -162,7 +162,7 @@
     if (!el) return;
     el.innerHTML = FAQ.map(
       (f, i) => `
-      <details${i === 0 ? " open" : ""}>
+      <details name="faq-accordion"${i === 0 ? " open" : ""}>
         <summary>${f.q}</summary>
         <p>${f.a}</p>
       </details>`
