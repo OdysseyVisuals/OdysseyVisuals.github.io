@@ -37,12 +37,16 @@
         <h2>OR <em>EMAIL US</em></h2>
       </div>
 
-      <!-- This form posts to the endpoint set as SITE.formEndpoint in content.js.
-           Using Formspree: create a form at formspree.io, then set formEndpoint
-           to the URL it gives you (formspree.io/f/xxxxxxx).
-           Using Cloudflare Pages / Netlify Functions instead: remove the action
-           in content.js's renderContact(), and handle submission in script.js. -->
-      <form class="pixel-panel contact-form" method="POST" data-form="feedback">
+      <!-- This form is submitted via JS (see script.js's initContactForm),
+           not a plain HTML POST, so it can fail over automatically.
+           It first sends to SITE.formEndpoint (Formspree — set that up at
+           formspree.io and put the URL in content.js). Formspree is blocked
+           outright in some countries/networks, so if it doesn't respond
+           within 6 seconds, or errors, the same data is resubmitted to
+           Web3Forms using SITE.web3formsAccessKey (get a free key at
+           web3forms.com and put it in content.js). The "action"/"method"
+           attributes below are just a no-JS fallback shell. -->
+      <form class="pixel-panel contact-form" method="POST" action="https://formspree.io/f/moeqarqb" data-form="feedback">
         <div class="form-row">
           <label>NAME<input name="name" required autocomplete="name" placeholder="Your name"></label>
           <label>EMAIL<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>

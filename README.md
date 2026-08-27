@@ -11,6 +11,7 @@ Nearly every piece of text and every link on the site lives in `content.js`. Ope
 | Pack version number, MC version        | `SITE.version`, `SITE.minecraftVersion` |
 | CurseForge / MCPEDL / Discord links    | `SITE.links` |
 | Contact form endpoint                  | `SITE.formEndpoint` |
+| Contact form backup endpoint (auto-used if Formspree is blocked/slow) | `SITE.web3formsAccessKey` |
 | Homepage "latest update" banner        | `LATEST_UPDATE` |
 | Changelog page                         | `CHANGELOG` array — add a new entry to the **top** |
 | Vanilla/Odyssey comparison sliders     | `COMPARISONS` array |
@@ -70,6 +71,7 @@ The images in `assets/` are placeholders. Swap them for real Minecraft screensho
 - [ ] Replace all placeholder screenshots in `assets/` with real ones
 - [ ] Set real URLs in `SITE.links` (CurseForge, MCPEDL, Discord) in `content.js`
 - [ ] Set up a [Formspree](https://formspree.io) form (or your own backend) and put the URL in `SITE.formEndpoint`
+- [ ] Set up a free [Web3Forms](https://web3forms.com) access key and put it in `SITE.web3formsAccessKey` — this is the backup contact-form service. Formspree is blocked outright on some networks/in some countries, so the contact form (in `script.js`) sends to Formspree first and automatically falls back to Web3Forms if Formspree doesn't respond within 6 seconds or errors. Skipping this means visitors on a network that blocks Formspree simply can't reach you.
 - [ ] Set `SITE.url` in `content.js` to your real domain, and replace every `https://odysseyvisuals.example.com` in the `<link rel="canonical">` tags and `sitemap.xml`/`robots.txt` with that domain
 - [ ] Replace `assets/favicon.webp` if you want a custom icon
 - [ ] Double check the changelog and version number match your actual latest release

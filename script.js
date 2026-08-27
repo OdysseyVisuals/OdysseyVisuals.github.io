@@ -86,17 +86,81 @@
     });
   }
 
+  // Fetches with a hard timeout. Rejects with a timeout error if `ms`
+  // passes before the request settles, and aborts the underlying request
+  // so it doesn't keep running in the background.
+  function fetchWithTimeout(url, options, ms) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), ms);
+    return fetch(url, { ...options, signal: controller.signal }).finally(() =>
+      clearTimeout(timer)
+    );
+  }
+
+  // Submits to Formspree, which is blocked outright in some countries. If it
+  // hasn't responded within FORMSPREE_TIMEOUT, or it errors/is blocked, we
+  // fall back to Web3Forms with the same field data instead of leaving the
+  // user stuck on a spinner.
+  const FORMSPREE_TIMEOUT = 6000;
+
+  async function submitToFormspree(formData) {
+    const res = await fetchWithTimeout(
+      SITE.formEndpoint,
+      {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      },
+      FORMSPREE_TIMEOUT
+    );
+    if (!res.ok) throw new Error("Formspree request failed");
+    return res;
+  }
+
+  async function submitToWeb3Forms(formData) {
+    formData.append("access_key", SITE.web3formsAccessKey);
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+      headers: { Accept: "application/json" },
+    });
+    if (!res.ok) throw new Error("Web3Forms request failed");
+    return res;
+  }
+
   function initContactForm() {
     const form = $("form[data-form]");
     if (!form) return;
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
       const status = $(".form-status", form);
-      if (form.action.includes("YOUR_FORM_ID")) {
-        e.preventDefault();
+
+      if (form.action.includes("YOUR_FORM_ID") || SITE.formEndpoint.includes("YOUR_FORM_ID")) {
         if (status) status.textContent = "Form is not connected yet — add your Formspree form ID in content.js to enable sending.";
         return;
       }
+
       if (status) status.textContent = "Sending…";
+      const formData = new FormData(form);
+      const submitBtn = $("button[type=submit]", form);
+      if (submitBtn) submitBtn.disabled = true;
+
+      try {
+        try {
+          await submitToFormspree(formData);
+        } catch (primaryErr) {
+          // Formspree either errored or didn't answer within the timeout
+          // (likely blocked) — retry the same data via Web3Forms.
+          if (status) status.textContent = "Retrying via backup service…";
+          await submitToWeb3Forms(new FormData(form));
+        }
+        if (status) status.textContent = "Thanks — your message was sent!";
+        form.reset();
+      } catch (err) {
+        if (status) status.textContent = "Something went wrong sending your message. Please try again or reach us on Discord.";
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
     });
   }
 

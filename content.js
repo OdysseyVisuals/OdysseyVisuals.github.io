@@ -26,6 +26,12 @@ const SITE = {
   // Contact form endpoint. See contact.html comments for setup instructions.
   formEndpoint: "https://formspree.io/f/moeqarqb",
 
+  // Fallback endpoint used automatically if Formspree doesn't respond within
+  // 6 seconds (Formspree is blocked by some ISPs/countries). Get a free
+  // access key at https://web3forms.com — no account needed for the key
+  // itself, just an email to receive submissions at. REPLACE the value below.
+  web3formsAccessKey: "8f6f648b-45ad-47a2-ace0-e4d22ffd7c55",
+
   social: {
     twitter: "",   // e.g. "https://x.com/yourhandle" — leave blank to hide
     youtube: "",    // e.g. "https://youtube.com/@yourhandle"
