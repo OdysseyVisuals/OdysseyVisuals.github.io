@@ -93,6 +93,81 @@
     ).join("");
   }
 
+  // ---------- Promo banner ----------
+  // Toggled entirely off content.js's PROMO_BANNER.enabled flag — when
+  // false, the section is hidden and left empty rather than removed from
+  // the page, so nothing else needs to change to turn it back on.
+  function renderPromoBanner() {
+    const el = $("#promo-banner");
+    if (!el) return;
+
+    if (!PROMO_BANNER || !PROMO_BANNER.enabled) {
+      el.hidden = true;
+      el.innerHTML = "";
+      return;
+    }
+
+    const m = PROMO_BANNER.media || {};
+    const media =
+      m.type === "video"
+        ? `<video class="promo-banner-media" autoplay muted loop playsinline${m.poster ? ` poster="${m.poster}"` : ""}>
+             <source src="${m.videoSrc}" type="video/webm">
+           </video>`
+        : `<img class="promo-banner-media" src="${m.src}" alt="" loading="lazy">`;
+
+    // Layout controls (all optional, from content.js) applied as CSS vars:
+    //  - height / heightMobile: banner height (any CSS length, e.g. "320px", "40vh")
+    //  - focalY / focalYMobile: vertical position of the image/video within
+    //    the banner (0% = top of image shown, 50% = centered, 100% = bottom
+    //    of image shown) — the image still fills the banner and stays
+    //    horizontally centered via object-fit:cover, this only shifts which
+    //    part of a taller-than-needed image is visible. focalYMobile applies
+    //    at ≤520px wide and falls back to focalY if not set.
+    //  - scrimTop / scrimBottom: darkening overlay colors (CSS color, can
+    //    include alpha e.g. "#0a0c0d00" for none, or "transparent").
+    //  - textColor: color of the headline + subtext.
+    //  - textBorder: border around the text block. Either a full CSS
+    //    border shorthand string (e.g. "2px solid #ffffff") or an object
+    //    { width, style, color, radius, padding } if you want padding/
+    //    radius control too. Omit for no border/box at all.
+    const layout = PROMO_BANNER.layout || {};
+    const vars = [];
+    if (layout.height) vars.push(`--promo-height:${layout.height}`);
+    if (layout.heightMobile) vars.push(`--promo-height-mobile:${layout.heightMobile}`);
+    if (layout.focalY) vars.push(`--promo-focal-y:${layout.focalY}`);
+    vars.push(`--promo-focal-y-mobile:${layout.focalYMobile || layout.focalY || "50%"}`);
+    if (layout.scrimTop) vars.push(`--promo-scrim-top:${layout.scrimTop}`);
+    if (layout.scrimBottom) vars.push(`--promo-scrim-bottom:${layout.scrimBottom}`);
+    if (layout.textColor) vars.push(`--promo-text-color:${layout.textColor}`);
+
+    let borderCss = "none";
+    let borderRadius = null;
+    let borderPadding = null;
+    if (layout.textBorder) {
+      if (typeof layout.textBorder === "string") {
+        borderCss = layout.textBorder;
+      } else {
+        const b = layout.textBorder;
+        borderCss = `${b.width || "2px"} ${b.style || "solid"} ${b.color || "#ffffff"}`;
+        borderRadius = b.radius || null;
+        borderPadding = b.padding || null;
+      }
+    }
+    vars.push(`--promo-text-border:${borderCss}`);
+    if (borderRadius) vars.push(`--promo-text-border-radius:${borderRadius}`);
+    if (borderPadding) vars.push(`--promo-text-border-padding:${borderPadding}`);
+
+    el.hidden = false;
+    if (vars.length) el.style.cssText = vars.join(";");
+    el.innerHTML = `
+      ${media}
+      <div class="promo-banner-scrim" aria-hidden="true"></div>
+      <div class="shell promo-banner-inner">
+        <h2 class="promo-banner-headline reveal">${PROMO_BANNER.headline}</h2>
+        <p class="promo-banner-subtext reveal">${PROMO_BANNER.subtext}</p>
+      </div>`;
+  }
+
   function renderHomeGallery() {
     const el = $("#gallery-grid");
     if (!el) return;
@@ -197,6 +272,7 @@
   renderFooter();
   renderHero();
   renderDownloadOptions();
+  renderPromoBanner();
   renderFeatures();
   renderUpdateStrip();
   renderStats();

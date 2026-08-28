@@ -98,6 +98,76 @@ const STATS = [
   { icon: "/assets/icon-rating.svg", value: "3.8", label: "MCPEDL RATING" },
 ];
 
+// Homepage banner shown between the download popup and the gallery.
+// Set "enabled" to false to hide the whole section — nothing needs to be
+// added or removed elsewhere, the section just won't render.
+//
+// "media.type" is either "image" or "video":
+//   - "image": set "media.src" to a still image (webp/jpg/png).
+//   - "video": set "media.videoSrc" to a webm. It autoplays muted, loops,
+//     and is silent, so no controls/audio to worry about. Also set
+//     "media.poster" to a still frame — it's shown while the video loads
+//     and is used as the image on browsers/data-saver modes that block
+//     autoplay.
+const PROMO_BANNER = {
+  enabled: false,
+  media: {
+    type: "image", // "image" or "video"
+    src: "/assets/promo-banner.webp",       // used when type is "image"
+    videoSrc: "/assets/promo-banner.webm",  // used when type is "video"
+    poster: "/assets/promo-banner.webp",    // poster/fallback frame for the video
+  },
+  headline: "SEE THE OVERWORLD DIFFERENTLY",
+  subtext: "",
+
+  // Layout controls — all optional, everything below has a sensible
+  // fallback in styles.css if you delete a line.
+  layout: {
+    // Banner height. Any CSS length works: "320px", "45vh", "28rem", etc.
+    height: "320px",
+    // Height on small/mobile screens (≤520px wide).
+    heightMobile: "250px",
+
+    // Which part of the image/video is shown vertically, on larger
+    // screens. The media always fills the banner width-to-width and stays
+    // horizontally centered — this only slides it up/down when the image
+    // is taller than the box.
+    //   "0%"   = top of the image is shown
+    //   "50%"  = centered (default)
+    //   "100%" = bottom of the image is shown
+    focalY: "50%",
+    // Same as focalY, but used on small/mobile screens (≤520px wide)
+    // instead — handy when the interesting part of the image sits in a
+    // different spot once the crop gets narrower/taller. Falls back to
+    // focalY above if you delete this line.
+    focalYMobile: "50%",
+
+    // Darkening overlay over the image/video, so the headline text stays
+    // readable. Previously this was a fairly heavy dark gradient by
+    // default; it's now much lighter. Use any CSS color (hex+alpha, rgba,
+    // "transparent", etc).
+    //   scrimTop    — color at the top of the banner
+    //   scrimBottom — color at the bottom of the banner (usually darker,
+    //                 since that's where the headline text sits)
+    // Set both to "transparent" for no darkening at all.
+    scrimTop: "#0a0c0d33",
+    scrimBottom: "#0a0c0d66",
+
+    // Color of the headline + subtext (any CSS color).
+    textColor: "#ffffff",
+
+    // Optional border/box drawn around the headline+subtext block.
+    // Leave this whole property out (or set to null) for no border.
+    // Two ways to set it:
+    //   1) A plain CSS border shorthand string:
+    //        textBorder: "2px solid #ffffff"
+    //   2) An object for extra control over padding/roundness:
+    //        textBorder: { width: "2px", style: "solid", color: "#ffffff",
+    //                      radius: "8px", padding: "24px 32px" }
+    textBorder: null,
+  },
+};
+
 // Homepage gallery. Every tile is shown at a fixed 16:9 crop, so use real
 // screenshots (PNG) at 1200x675 or similar — not SVG, which upscales
 // poorly and won't show photographic detail from in-game screenshots.
