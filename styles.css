@@ -250,6 +250,23 @@ img{-webkit-user-drag:none;user-drag:none;-webkit-touch-callout:none;user-select
 .home-gallery-grid .gallery-item{aspect-ratio:16/9;width:100%}
 .home-gallery-grid .gallery-item img{width:100%;height:100%;object-fit:cover}
 
+/* Sliding marquee gallery */
+.marquee-gallery{display:flex;flex-direction:column;gap:16px;overflow:hidden}
+.marquee-row{width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.marquee-track{display:flex;width:max-content;gap:16px;will-change:transform}
+.marquee-row-left .marquee-track{animation:marquee-left 42s linear infinite}
+.marquee-row-right .marquee-track{animation:marquee-right 42s linear infinite}
+.marquee-row:hover .marquee-track{animation-play-state:paused}
+.marquee-gallery .gallery-item{flex:0 0 auto;width:clamp(280px,34vw,440px);aspect-ratio:16/9;cursor:zoom-in}
+.marquee-gallery .gallery-item img{width:100%;height:100%;object-fit:cover}
+
+@keyframes marquee-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes marquee-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+@media (prefers-reduced-motion:reduce){
+  .marquee-track{animation:none !important}
+}
+
 .stats-strip{
   position:relative;
   z-index:2;
@@ -425,6 +442,10 @@ textarea{resize:vertical}
   .home-cards,.feature-grid{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
   .stat-row{gap:10px}
+  .marquee-gallery{gap:10px}
+  .marquee-gallery .gallery-item{width:clamp(200px,72vw,300px)}
+  .marquee-track{gap:10px}
+  .marquee-row-left .marquee-track,.marquee-row-right .marquee-track{animation-duration:26s}
   .footer-inner{font-size:7px}
   .hero-banner{min-height:400px}
   .hero-logo{width:90%}

@@ -168,19 +168,24 @@ const PROMO_BANNER = {
   },
 };
 
-// Homepage gallery. Every tile is shown at a fixed 16:9 crop, so use real
-// screenshots (PNG) at 1200x675 or similar — not SVG, which upscales
-// poorly and won't show photographic detail from in-game screenshots.
-// "label" is the small tag shown on the grid tile itself.
+// Homepage gallery — shown as a two-row sliding marquee. Every tile is shown
+// at a fixed 16:9 crop, so use real screenshots (PNG) at 1200x675 or similar
+// — not SVG, which upscales poorly and won't show photographic detail from
+// in-game screenshots.
+// "label" is the small tag shown on the tile itself.
 // "tag" is optional — if set, it's shown instead of "label" as the caption
 // at the top of the full-size popup (e.g. crediting a screenshot tool or
-// giving more detail than the short grid label). If omitted, "label" is
-// reused for the popup too.
+// giving more detail than the short label). If omitted, "label" is reused
+// for the popup too.
+// "row" controls which of the two sliding rows the image appears in — use
+// 1 or 2. If you omit "row" on an entry, it's assigned automatically by
+// alternating, so you only need to set this when you care which row a
+// specific image ends up in. Add as many entries as you like to either row.
 const GALLERY = [
-  { src: "/assets/image1.webp", label: "Taiga at night", tag: "Captured with CoreCraft Addon" },
-  { src: "/assets/image2.webp", label: "Mushroom Island", tag: "Captured with CoreCraft Addon" },
-  { src: "/assets/image3.webp", label: "Warped Forest", tag: "Captured with CoreCraft Addon" },
-  { src: "/assets/image4.webp", label: "End City", tag: "Captured with CoreCraft Addon" },
+  { src: "/assets/image1.webp", label: "Taiga at night", tag: "Captured with CoreCraft Addon", row: 1 },
+  { src: "/assets/image2.webp", label: "Mushroom Island", tag: "Captured with CoreCraft Addon", row: 2 },
+  { src: "/assets/image3.webp", label: "Warped Forest", tag: "Captured with CoreCraft Addon", row: 1 },
+  { src: "/assets/image4.webp", label: "End City", tag: "Captured with CoreCraft Addon", row: 2 },
 ];
 
 // Installation guides, one card per platform.

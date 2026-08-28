@@ -168,15 +168,48 @@
       </div>`;
   }
 
+  // Splits GALLERY into two rows for the sliding marquee (alternating items
+  // between row 1 and row 2). Each row's track is duplicated back-to-back so
+  // the CSS animation can loop seamlessly from 0 to -50% and jump back
+  // invisibly. Rows scroll in opposite directions for visual variety.
+  function renderMarqueeRow(items) {
+    const tile = (g) => `
+      <button class="gallery-item" data-full="${g.src}" data-tag="${g.tag || g.label}">
+        <img src="${g.src}" alt="${g.label}" loading="lazy" draggable="false">
+      </button>`;
+    return `<div class="marquee-track">${items.map(tile).join("")}${items.map(tile).join("")}</div>`;
+  }
+
   function renderHomeGallery() {
     const el = $("#gallery-grid");
     if (!el) return;
-    el.innerHTML = GALLERY.map(
-      (g) => `
-      <button class="gallery-item reveal" data-full="${g.src}" data-tag="${g.tag || g.label}">
-        <img src="${g.src}" alt="${g.label}" loading="lazy">
-      </button>`
-    ).join("");
+
+    const rowA = [];
+    const rowB = [];
+    GALLERY.forEach((g, i) => {
+      // Explicit "row" wins. Missing "row" falls back to alternating by
+      // index so old-style entries (or ones you don't care to pin) still
+      // split evenly between the two rows.
+      const row = g.row === 1 || g.row === 2 ? g.row : (i % 2 === 0 ? 1 : 2);
+      (row === 1 ? rowA : rowB).push(g);
+    });
+
+    if (GALLERY.length < 2 || !rowA.length || !rowB.length) {
+      // Not enough images, or all images pinned to one row — fall back to
+      // the plain static grid instead of an empty/broken marquee row.
+      el.innerHTML = GALLERY.map(
+        (g) => `
+        <button class="gallery-item reveal" data-full="${g.src}" data-tag="${g.tag || g.label}">
+          <img src="${g.src}" alt="${g.label}" loading="lazy">
+        </button>`
+      ).join("");
+      return;
+    }
+
+    el.classList.add("marquee-gallery");
+    el.innerHTML = `
+      <div class="marquee-row marquee-row-left reveal">${renderMarqueeRow(rowA)}</div>
+      <div class="marquee-row marquee-row-right reveal">${renderMarqueeRow(rowB)}</div>`;
   }
 
   function renderStats() {
