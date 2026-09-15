@@ -11,7 +11,7 @@
 const SITE = {
   name: "Odyssey Visuals",
   tagline: "Minecraft Bedrock visual pack",
-  version: "2.4.0",
+  version: "2.1.0",
   minecraftVersion: "1.21+",
   description: "Odyssey Visuals is a cinematic visual pack for Minecraft Bedrock: softer light, atmospheric skies, and hand-tuned biome color, built for Deferred and Vibrant Visuals rendering.",
   url: "https://odysseyvisuals.github.io/",
@@ -40,8 +40,8 @@ const SITE = {
 
 // Latest update banner shown on the homepage.
 const LATEST_UPDATE = {
-  title: "Update 2.0",
-  summary: "The pack was updated with lots of changes",
+  title: "Update 2.1",
+  summary: "Added Biomes O' Plenty compatibility, coloured lighting, and fog/colour grading tweaks",
 };
 
 // Full changelog. Newest entry first. Add a new object to the top of this
@@ -58,9 +58,40 @@ const LATEST_UPDATE = {
 //     If you omit both, the "notes" line is reused as the only bullet.
 const CHANGELOG = [
   {
+    version: "2.1.0",
+    date: "16 September 2026",
+    title: "Odyssey Visuals v2.1",
+    notes: "Added Biomes O' Plenty compatibility and coloured lighting, plus fog and colour grading tweaks.",
+    sections: [
+      {
+        heading: "New",
+        items: [
+          "Added compatibility and enhanced visuals with the Biomes O' Plenty Addon biomes",
+          "Added coloured lighting support for the blocks from Biomes O' Plenty",
+        ],
+      },
+      {
+        heading: "Changes",
+        items: [
+          "Tweaked the strength of the fog when raining to be less strong to improve visibility",
+          "Tweaked overall colour grading to have more contrast",
+          "Tweaked the sky at sunset/sunrise to be slightly brighter",
+          "Reduced the fog underwater for better visibility",
+        ],
+      },
+      {
+        heading: "Fixes",
+        items: [
+          "Fixed an issue that caused the strength of fog when raining to be different across biomes",
+          "Fixed an issue that caused the water look broken in Biomes O' Plenty Addon biomes",
+        ],
+      },
+    ],
+  },
+  {
     version: "2.0.0",
     date: "21 June 2026",
-    title: "Update 2.0",
+    title: "Odyssey Visuals v2.0",
     notes: "Overall Polish with many overhauls and improvements.",
     sections: [
       {
@@ -110,21 +141,21 @@ const STATS = [
 //     and is used as the image on browsers/data-saver modes that block
 //     autoplay.
 const PROMO_BANNER = {
-  enabled: false,
+  enabled: true,
   media: {
     type: "image", // "image" or "video"
-    src: "/assets/promo-banner.webp",       // used when type is "image"
+    src: "/assets/bop_banner.webp",       // used when type is "image"
     videoSrc: "/assets/promo-banner.webm",  // used when type is "video"
-    poster: "/assets/promo-banner.webp",    // poster/fallback frame for the video
+    poster: "/assets/bop_banner.webp",    // poster/fallback frame for the video
   },
-  headline: "SEE THE OVERWORLD DIFFERENTLY",
-  subtext: "",
+  headline: "",
+  subtext: "Odyssey Visuals Now compatible and enhanced with Biomes o' Plenty Addon!",
 
   // Layout controls — all optional, everything below has a sensible
   // fallback in styles.css if you delete a line.
   layout: {
     // Banner height. Any CSS length works: "320px", "45vh", "28rem", etc.
-    height: "320px",
+    height: "420px",
     // Height on small/mobile screens (≤520px wide).
     heightMobile: "250px",
 
@@ -135,7 +166,7 @@ const PROMO_BANNER = {
     //   "0%"   = top of the image is shown
     //   "50%"  = centered (default)
     //   "100%" = bottom of the image is shown
-    focalY: "50%",
+    focalY: "25%",
     // Same as focalY, but used on small/mobile screens (≤520px wide)
     // instead — handy when the interesting part of the image sits in a
     // different spot once the crop gets narrower/taller. Falls back to
@@ -186,6 +217,20 @@ const GALLERY = [
   { src: "/assets/image2.webp", label: "Mushroom Island", tag: "Captured with CoreCraft Addon", row: 2 },
   { src: "/assets/image3.webp", label: "Warped Forest", tag: "Captured with CoreCraft Addon", row: 1 },
   { src: "/assets/image4.webp", label: "End City", tag: "Captured with CoreCraft Addon", row: 2 },
+  { src: "/assets/image5.webp", label: "Cherry Grove", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 2 },
+  { src: "/assets/image6.webp", label: "Desert Temple", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 1 },
+  { src: "/assets/image7.webp", label: "Savanna Sunset", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 1 },
+  { src: "/assets/image8.webp", label: "Ice Spikes", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 2 },
+  { src: "/assets/image9.webp", label: "Jungle Canopy", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 1 },
+  { src: "/assets/image10.webp", label: "Mesa Canyon", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 2 },
+  { src: "/assets/image11.webp", label: "Ocean Monument", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 2 },
+  { src: "/assets/image12.webp", label: "Birch Forest", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 1 },
+  { src: "/assets/image13.webp", label: "Ancient City", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 2 },
+  { src: "/assets/image14.webp", label: "Ruined Portal", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 1 },
+  { src: "/assets/image15.webp", label: "Bamboo Jungle", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 1 },
+  { src: "/assets/image16.webp", label: "Swamp Hut", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 2 },
+  { src: "/assets/image17.webp", label: "Mountain Peak", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 2 },
+  { src: "/assets/image18.webp", label: "Nether Wastes", tag: "Captured with CoreCraft Addon & Biomes O' Plenty Addon", row: 1 },
 ];
 
 // Installation guides, one card per platform.
