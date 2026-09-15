@@ -68,6 +68,7 @@ const CHANGELOG = [
         items: [
           "Added compatibility and enhanced visuals with the Biomes O' Plenty Addon biomes",
           "Added coloured lighting support for the blocks from Biomes O' Plenty",
+          "Added support for the  'Wilderness Bound' game drop"
         ],
       },
       {
