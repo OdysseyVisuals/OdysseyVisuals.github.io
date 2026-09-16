@@ -150,7 +150,7 @@ const PROMO_BANNER = {
     poster: "/assets/bop_banner.webp",    // poster/fallback frame for the video
   },
   headline: "",
-  subtext: "Odyssey Visuals is now has compatability and enhanced visuals with the Biome O' Plenty Addon!",
+  subtext: "Odyssey Visuals now has compatability and enhanced visuals with the Biome O' Plenty Addon!",
 
   // Layout controls — all optional, everything below has a sensible
   // fallback in styles.css if you delete a line.
